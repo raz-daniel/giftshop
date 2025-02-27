@@ -7,7 +7,7 @@ export default function paramsValidation(validator: ObjectSchema) {
 
     return async function (req: Request, res: Response, next: NextFunction) {
         try {
-            req.params = await validator.validateAsync(req.params) //the first req.body is for transformation and not validation
+            req.params = await validator.validateAsync(req.params)
             next()
         } catch (error) {
             console.error('paramsValidation Error:', error)

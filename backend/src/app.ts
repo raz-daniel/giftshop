@@ -1,7 +1,6 @@
 import express, { json } from "express"
 import config from "config"
 import sequelize from "./db/sequelize"
-import profileRouter from "./routers/profileRouter"
 import errorLogger from "./middlewares/error/error-logger"
 import errorResponder from "./middlewares/error/error-responder"
 import notFound from "./middlewares/not-found"
@@ -10,6 +9,7 @@ import notFound from "./middlewares/not-found"
 import getUser from './middlewares/auth/get-user'
 import requireAuth from './middlewares/auth/require-auth'
 import cors from 'cors'
+import homeRouter from "./routers/homeRouter"
 
 const port = config.get<string>('app.port')
 const name = config.get<string>('app.name')
@@ -22,7 +22,7 @@ const app = express();
 (async () => {
     try {
         console.log('Trying to Connect to Database')
-        await sequelize.sync()
+        await sequelize.sync({ force })
         console.log('Database logged in successfully')
 
 
@@ -32,14 +32,13 @@ const app = express();
 
         // app.use('/auth', authRouter)
 
-        app.use(getUser)
+        app.use('/', homeRouter)
 
-        app.use(requireAuth)
         // *************** here is the place to mount routers 
         // app.use('/follows', followRouter)
 
-      
-        
+
+
         //special notFound middleware
         app.use(notFound)
 
