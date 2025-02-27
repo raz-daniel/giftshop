@@ -6,10 +6,10 @@ import errorResponder from "./middlewares/error/error-responder"
 import notFound from "./middlewares/not-found"
 
 // import authRouter from "./routers/authRouter"
-import getUser from './middlewares/auth/get-user'
-import requireAuth from './middlewares/auth/require-auth'
 import cors from 'cors'
 import homeRouter from "./routers/homeRouter"
+import giftsRouter from "./routers/giftsRouter"
+import newRouter from "./routers/newRouter"
 
 const port = config.get<string>('app.port')
 const name = config.get<string>('app.name')
@@ -32,7 +32,11 @@ const app = express();
 
         // app.use('/auth', authRouter)
 
-        app.use('/', homeRouter)
+    
+        app.use('/home', homeRouter)
+        app.use('/gifts', giftsRouter)
+        app.use('/new', newRouter)
+
 
         // *************** here is the place to mount routers 
         // app.use('/follows', followRouter)
