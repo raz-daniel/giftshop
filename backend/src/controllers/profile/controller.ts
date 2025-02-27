@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import User from "../../model/user";
-import Post from "../../model/post";
+import Post from "../../model/target-market";
 import Comment from "../../model/comment";
 import postIncludes from "../common/post-includes";
 import AppError from "../../errors/app-error";

@@ -1,8 +1,7 @@
 {
     "app": {
         "port": "APP_PORT",
-        "name": "APP_NAME",
-        "secret": "APP_SECRET"
+        "name": "APP_NAME"
     },
     "db": {
         "password": "DB_PASSWORD"
