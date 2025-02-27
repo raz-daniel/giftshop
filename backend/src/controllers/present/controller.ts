@@ -1,9 +1,8 @@
 import { NextFunction, Response, Request } from "express";
-import Post from "../../model/target-market";
-import Comment from "../../model/comment";
-import postIncludes from "../common/post-includes";
 import AppError from "../../errors/app-error";
 import { StatusCodes } from "http-status-codes";
+import Present from "../../model/presents";
+import TargetMarket from "../../model/target-market";
 
 
 export async function getPresents(req: Request<{ id: string }>, res: Response, next: NextFunction) {
@@ -13,61 +12,65 @@ export async function getPresents(req: Request<{ id: string }>, res: Response, n
             return next(new AppError(StatusCodes.BAD_REQUEST, 'cannot find category id'))
         }
 
-        const presents = await Post.findByPk(req.params.id, postIncludes)
-        console.log('post:', post)
-        if (!post) {
-            return next(new AppError(StatusCodes.NOT_FOUND, 'Post Not Found'))
+        const presents = await TargetMarket.findByPk(req.params.id, {
+            include: [ {
+                model: Present
+            } ]
+        })
+
+        console.log('presents:', presents)
+        if (!presents) {
+            return next(new AppError(StatusCodes.NOT_FOUND, 'Presents Not Found'))
         }
 
-        res.status(StatusCodes.OK).json(post)
+        res.status(StatusCodes.OK).json(presents)
 
     } catch (err) {
-        console.error('getPost Error:', err)
-        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to retrieve post'))
+        console.error('getPresent Error:', err)
+        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to retrieve presents'))
     }
 }
 
-export async function deletePost(req: Request<{ id: string }>, res: Response, next: NextFunction) {
+export async function deletePresent(req: Request<{ id: string }>, res: Response, next: NextFunction) {
     try {
         console.log('req.params.id:', req.params.id)
         if (!req.params.id) {
-            return next(new AppError(StatusCodes.BAD_REQUEST, 'cannot find post id'))
+            return next(new AppError(StatusCodes.BAD_REQUEST, 'cannot find present id'))
         }
 
         const id = req.params.id
-        const deletedCount = await Post.destroy({
+        const deletedCount = await Present.destroy({
             where: { id }
         })
         if (deletedCount === 0) {
-            return next(new AppError(StatusCodes.NOT_FOUND, 'Posts not found'))
+            return next(new AppError(StatusCodes.NOT_FOUND, 'Present not found'))
         }
 
         res.status(StatusCodes.OK).json({ success: true })
 
     } catch (err) {
-        console.error('Delete Post Error:', err)
-        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to delete post'))
+        console.error('Delete Present Error:', err)
+        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to delete present'))
     }
 }
 
-export async function createPost(req: Request, res: Response, next: NextFunction) {
+export async function createPresent(req: Request, res: Response, next: NextFunction) {
     try {
-        const userId = req.userId
-        console.log('userId:', userId)
-        if (!userId) {
-            return next(new AppError(StatusCodes.UNAUTHORIZED, 'Authentication Required'))
-        }
+        
+        const present = await Present.create({ ...req.body })
+        console.log('present:', present)
 
-        const post = await Post.create({ ...req.body, userId })
-        console.log('post:', post)
+        await present.reload({
+            include: [ {
+                model: Present
+            } ]
+        })
 
-        await post.reload(postIncludes)
-
-        res.status(StatusCodes.CREATED).json(post)
+        res.status(StatusCodes.CREATED).json(present)
 
     } catch (err) {
-        console.error('Creating Post Error:', err)
-        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to create post'))
+        console.error('Creating Present Error:', err)
+        next(new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'Failed to create present'))
     }
 
 }
