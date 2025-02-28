@@ -1,0 +1,34 @@
+-- Target market categories
+INSERT INTO `target_markets` (`id`, `category`, `created_at`, `updated_at`) VALUES
+(UUID(), 'Children (0-12 years)', NOW(), NOW()),
+(UUID(), 'Teenagers (13-19 years)', NOW(), NOW()),
+(UUID(), 'Adults (20-59 years)', NOW(), NOW()),
+(UUID(), 'Seniors (60+ years)', NOW(), NOW());
+
+-- For Children category
+INSERT INTO `presents` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `created_at`, `updated_at`) VALUES
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Children (0-12 years)'), 'Educational Robot Kit', 'Interactive robot building kit for young minds', 49.99, 5, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Children (0-12 years)'), 'Plush Adventure Backpack', 'Cute plush backpack with hidden compartments', 24.99, 0, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Children (0-12 years)'), 'Magic Science Kit', 'Safe chemistry experiments for curious kids', 34.99, 10, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Children (0-12 years)'), 'Illustrated Storybook Collection', 'Set of 5 beautifully illustrated adventure books', 29.99, 0, NOW(), NOW());
+
+-- For Teenagers category
+INSERT INTO `presents` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `created_at`, `updated_at`) VALUES
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Teenagers (13-19 years)'), 'Wireless Bluetooth Headphones', 'High-quality sound with noise cancellation', 79.99, 15, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Teenagers (13-19 years)'), 'Custom Phone Case Kit', 'Design your own phone case with artistic materials', 19.99, 0, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Teenagers (13-19 years)'), 'LED Room Lights Strip', 'Customizable RGB lighting for bedroom decoration', 29.99, 5, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Teenagers (13-19 years)'), 'Skateboard Complete Set', 'Professional skateboard with cool graphics', 59.99, 10, NOW(), NOW());
+
+-- For Adults category
+INSERT INTO `presents` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `created_at`, `updated_at`) VALUES
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Adults (20-59 years)'), 'Gourmet Coffee Gift Set', 'Selection of premium coffee beans with brewing accessories', 49.99, 0, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Adults (20-59 years)'), 'Fitness Smartwatch', 'Activity tracker with heart rate monitoring', 129.99, 20, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Adults (20-59 years)'), 'Aromatherapy Essential Oil Diffuser', 'Elegant wood grain design with light options', 39.99, 5, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Adults (20-59 years)'), 'Wine Tasting Experience Kit', 'Selection of wines with tasting guide and accessories', 89.99, 10, NOW(), NOW());
+
+-- For Seniors category
+INSERT INTO `presents` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `created_at`, `updated_at`) VALUES
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Seniors (60+ years)'), 'Digital Photo Frame', 'Easy-to-use frame that displays photos from phone', 69.99, 10, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Seniors (60+ years)'), 'Gardening Tool Set', 'Ergonomic gardening tools with comfort grips', 44.99, 5, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Seniors (60+ years)'), 'Classic Novel Collection', 'Set of 10 hardcover classic literature books', 79.99, 15, NOW(), NOW()),
+(UUID(), (SELECT id FROM target_markets WHERE category = 'Seniors (60+ years)'), 'Cozy Weighted Blanket', 'Therapeutic weighted blanket for better sleep', 59.99, 0, NOW(), NOW());

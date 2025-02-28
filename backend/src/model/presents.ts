@@ -14,7 +14,7 @@ export default class Present extends Model {
     id: string
 
     //popular columns
-    @ForeignKey(() => Present)
+    @ForeignKey(() => TargetMarket)
     @Column(DataType.UUID)
     categoryId: string
     
@@ -27,11 +27,11 @@ export default class Present extends Model {
     description: string
 
     @AllowNull(false)
-    @Column(DataType.NUMBER)
+    @Column(DataType.DECIMAL(10, 2))
     price: number
 
     @AllowNull(false)
-    @Column(DataType.NUMBER)
+    @Column(DataType.DECIMAL(10, 2))
     discount: number
 
     //relationships

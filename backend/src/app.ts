@@ -5,9 +5,7 @@ import errorLogger from "./middlewares/error/error-logger"
 import errorResponder from "./middlewares/error/error-responder"
 import notFound from "./middlewares/not-found"
 
-// import authRouter from "./routers/authRouter"
 import cors from 'cors'
-import homeRouter from "./routers/homeRouter"
 import giftsRouter from "./routers/giftsRouter"
 import newRouter from "./routers/newRouter"
 
@@ -27,26 +25,15 @@ const app = express();
 
 
         app.use(cors())
-        //middlewares
-        app.use(json()) //middleware to extract the post/put/patch data and save it to the request object in case the content type of the request is application json
 
-        // app.use('/auth', authRouter)
+        app.use(json())
 
     
-        app.use('/home', homeRouter)
         app.use('/gifts', giftsRouter)
         app.use('/new', newRouter)
 
-
-        // *************** here is the place to mount routers 
-        // app.use('/follows', followRouter)
-
-
-
-        //special notFound middleware
         app.use(notFound)
 
-        //error middlewares
         app.use(errorLogger)
         app.use(errorResponder)
 

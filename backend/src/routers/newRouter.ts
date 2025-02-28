@@ -5,7 +5,6 @@ import { createPresent } from "../controllers/present/controller";
 
 const newRouter = Router()
 
-newRouter.get('/new', )
-newRouter.post('/home', createPresent)
+newRouter.post('/', createPresent)
 
 export default newRouter

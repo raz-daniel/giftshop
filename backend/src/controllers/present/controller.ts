@@ -62,7 +62,7 @@ export async function createPresent(req: Request, res: Response, next: NextFunct
 
         await present.reload({
             include: [ {
-                model: Present
+                model: TargetMarket
             } ]
         })
 
