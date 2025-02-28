@@ -1,13 +1,14 @@
+/* 
 import './Profile.css'
 import { useEffect, useRef } from 'react'
-import ProfileService from '../../../services/auth-aware/Profile'
-import Post from '../post/Post'
-import NewPost from '../new/NewPost'
+import ProfileService from '../../../services/Profile'
+
+
 import Loading from '../../common/loading/Loading'
 import useTitle from '../../../hooks/useTitle'
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks'
 import { init } from '../../../redux/profileSlice'
-import useService from '../../../hooks/useService'
+
 import { Toast } from 'primereact/toast'
 
 
@@ -64,3 +65,4 @@ export default function Profile(): JSX.Element {
         </div>
     )
 }
+*/

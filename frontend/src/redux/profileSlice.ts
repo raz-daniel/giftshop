@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import Post from "../models/post/Post"
+import Post from "../models/post/Present"
 import Comment from "../models/comment/Comment"
 
 interface ProfileState {
