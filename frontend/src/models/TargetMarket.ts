@@ -1,3 +1,7 @@
+import Present from "./Present";
+
 export default interface TargetMarket {
-    category: string
+    id: string,
+    category: string,
+    present?: Present[]
 }

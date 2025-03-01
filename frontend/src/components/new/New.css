@@ -1,0 +1,88 @@
+/* Target the form inside your component */
+.New form {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 8px;
+  }
+  
+  /* Style the fieldset */
+  .New fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 0;
+  }
+  
+  /* Style the legend */
+  .New legend {
+    font-weight: bold;
+    padding: 0 10px;
+  }
+  
+  /* Style inputs, select, and textarea */
+  .New input,
+  .New select,
+  .New textarea {
+    margin-bottom: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .New textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  /* Style the error messages */
+  .New .error {
+    color: red;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  /* Style the button */
+  .New button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .New button:hover {
+    background-color: #45a049;
+  }
+  
+  /* Style the loading message */
+  .New p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .New p img {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Style success message if you add one */
+  .New .success-message {
+    background-color: #dff0d8;
+    color: #3c763d;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #d6e9c6;
+  }

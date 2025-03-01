@@ -1,12 +1,3 @@
-# FROM node:22-alpine
-# WORKDIR /app
-# COPY ./package*.json ./
-# RUN npm install
-# COPY ./ ./
-# CMD npm run dev
-
-#Packaging for production
-
 FROM node:22-alpine as builder
 WORKDIR /app
 COPY ./package*.json ./

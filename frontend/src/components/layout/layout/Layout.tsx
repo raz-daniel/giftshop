@@ -13,9 +13,6 @@ export default function Layout() {
             <main>
                 <Routing />
             </main>
-            <footer>
-                <Footer /> 
-            </footer>
         </div>
     )
 }
